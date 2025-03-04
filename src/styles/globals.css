@@ -1,11 +1,10 @@
-
-*{
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-header{
+header {
   background-color: black;
   color: white;
   display: flex;
@@ -14,45 +13,36 @@ header{
   padding: 1rem;
 }
 
-a{
-  text-decoration: none;
+a {
+  text-decoration: none !important;
   color: inherit;
   padding: 1rem;
   margin: 1rem;
 }
 
-footer{
+footer {
   background-color: black;
   color: white;
   padding: 1rem;
   text-align: center;
 }
 
-main{
-  min-height: calc(100vh - 140px);
+main {
+  min-height: calc(100vh - 280px);
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
 }
 
-.row{
-display: grid;
-grid-template-columns: repeat(4, 1fr);
-}
-
-.card{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  border: 1px solid black;
+.card {
   border-radius: 10px;
   margin: 1rem;
-  padding: 1rem;
   cursor: pointer;
+  overflow: hidden;
 }
 
-.cardTitle{
-  min-height: 50px
+.card-title {
+  min-height: 50px;
 }
+

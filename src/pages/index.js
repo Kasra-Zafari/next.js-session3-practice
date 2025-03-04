@@ -4,14 +4,14 @@ const HomePage = () => {
   return (
     <>
       <Head>
-        <title>
-          Home Page
-        </title>
+        <title>Home Page</title>
       </Head>
-        <h1>hello next.js</h1>
-
+      
+      <div className="container text-center mt-5">
+        <h1>Hello Next.js</h1>
+      </div>
     </>
-  )
-}
+  );
+};
 
 export default HomePage;

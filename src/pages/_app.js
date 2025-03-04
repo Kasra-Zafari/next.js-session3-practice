@@ -1,9 +1,10 @@
+import "@/styles/globals.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 import Layout from "@/components/Layout";
 import AboutLayout from "@/components/Layout/AboutLayout";
 import CompanyLayout from "@/components/Layout/CompanyLayout";
 import ProductsLayout from "@/components/Layout/ProductsLayout";
 import ProductDetailLayout from "@/components/Layout/ProductDetailLayout";
-import "@/styles/globals.css";
 import { usePathname } from "next/navigation";
 
 export default function App({ Component, pageProps }) {
