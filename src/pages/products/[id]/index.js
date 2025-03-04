@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Image from "next/image";
 import { useRouter } from "next/router";
 
 const ProductDetail = ({ product, error }) => {
@@ -24,12 +25,17 @@ const ProductDetail = ({ product, error }) => {
       <div className="container py-5">
         <div className="row">
           <div className="col-md-6 text-center">
-            <img
-              src={product.image}
-              alt={product.title}
-              width={400}
-              className="img-fluid"
-            />
+            <div className="d-flex justify-content-center">
+              <Image
+                src={product.image}
+                alt={product.title}
+                width={400}
+                height={400}
+                quality={50}
+                objectFit="contain"
+                className="img-fluid"
+              />
+            </div>
           </div>
           <div className="col-md-6">
             <h1>{product.title}</h1>

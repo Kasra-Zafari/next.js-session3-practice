@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
+import Image from "next/image";
 
 const ProductsPage = ({ products, error }) => {
   if (error) {
@@ -22,17 +23,31 @@ const ProductsPage = ({ products, error }) => {
             <div className="col" key={product.id}>
               <Link href={`/products/${product.id}`} passHref>
                 <div className="card h-100 shadow-sm">
-                  <img
-                    src={product.image}
-                    alt={product.title}
+                  <div
                     className="card-img-top"
-                    height="200"
                     style={{
-                      objectFit: "contain",
-                      width: "100%",
-                      padding: "10px",
+                      height: "200px",
+                      position: "relative",
+                      overflow: "hidden",
                     }}
-                  />
+                  >
+                    <div className="card-img-top d-flex align-items-center justify-content-center"
+                      style={{
+                        height: "200px",
+                        padding: "10px"
+                      }}>
+                      <Image
+                        src={product.image}
+                        alt={product.title}
+                        layout="intrinsic"
+                        width={120}
+                        height={120}
+                        objectFit="contain"
+                        quality={50}
+                      />
+                    </div>
+
+                  </div>
                   <div className="card-body d-flex flex-column justify-content-between">
                     <h5
                       className="card-title"
