@@ -1,17 +1,14 @@
 import Head from "next/head";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 
-const ProductsPage = () => {
-  const [products, setProducts] = useState([]);
+const ProductsPage = ({ products, error }) => {
+  if (error) {
+    return <p className="text-center text-danger">Failed to load products. Please try again later.</p>;
+  }
 
-  useEffect(() => {
-    fetch("https://fakestoreapi.com/products")
-      .then((res) => res.json())
-      .then((data) => {
-        setProducts(data);
-      });
-  }, []);
+  if (!products || products.length === 0) {
+    return <p className="text-center">Loading...</p>;
+  }
 
   return (
     <>
@@ -36,8 +33,13 @@ const ProductsPage = () => {
                       padding: "10px",
                     }}
                   />
-                  <div className="card-body d-flex flex-column">
-                    <h5 className="card-title">{product.title}</h5>
+                  <div className="card-body d-flex flex-column justify-content-between">
+                    <h5
+                      className="card-title"
+                      style={{ minHeight: "48px", overflow: "hidden" }}
+                    >
+                      {product.title}
+                    </h5>
                     <p className="card-text text-muted">{product.category}</p>
                     <p className="card-text fw-bold">${product.price}</p>
                   </div>
@@ -50,5 +52,28 @@ const ProductsPage = () => {
     </>
   );
 };
+
+export async function getStaticProps() {
+  try {
+    const res = await fetch("https://fakestoreapi.com/products");
+
+    if (!res.ok) {
+      throw new Error(`HTTP error! Status: ${res.status}`);
+    }
+
+    const products = await res.json();
+
+    return {
+      props: { products },
+      revalidate: 60,
+    };
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    return {
+      props: { products: null, error: "Failed to fetch products." },
+      revalidate: 60,
+    };
+  }
+}
 
 export default ProductsPage;
